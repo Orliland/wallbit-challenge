@@ -9,7 +9,7 @@ const Header = ({ dark, setDark }) => {
   return (
     <header className="lg:col-span-full lg:row-span-1 py-2 flex justify-between items-center">
       <h1 className="text-neutral-200 font-bold text-xl py-3 px-6 rounded-full bg-black/20">
-        Tienda Topo
+        Tienda - El Topo
       </h1>
       <nav className="flex gap-4">
         <ul className="flex bg-black/20 rounded-full">
