@@ -12,8 +12,10 @@ const useDark = () => {
     }
 
     setDark(localDark);
-    if (localDark == dark) {
-      document.documentElement.classList.toggle("dark");
+    if (localDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
   }, [dark]);
 
