@@ -12,9 +12,9 @@ const Dark = ({ dark, setDark }) => {
         }}
       >
         {dark ? (
-          <img src={DarkIcon} alt="Set dark mode" className="w-6 h-6" />
-        ) : (
           <img src={LightIcon} alt="Set light mode" className="w-6 h-6" />
+        ) : (
+          <img src={DarkIcon} alt="Set dark mode" className="w-6 h-6" />
         )}
       </button>
     </div>
