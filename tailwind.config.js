@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        light: "url('/bg.webp')",
+        light: "url('/light.webp')",
+        dark: "url('/dark.webp')",
       },
     },
   },

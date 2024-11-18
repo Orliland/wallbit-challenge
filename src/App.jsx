@@ -3,7 +3,7 @@ import Header from "./layout/Header";
 
 function App() {
   return (
-    <div className="w-full min-h-screen bg-light bg-center bg-cover ">
+    <div className="w-full min-h-screen bg-light dark:bg-dark bg-center bg-cover ">
       <div className="min-h-screen bg-opacity-50 bg-neutral-600 backdrop-blur-lg bg-white-700/50">
         <Banner />
         <main className="lg:w-9/12 p-4 mx-auto  grid gap-6 lg:grid-cols-3 lg:grid-rows-3">
