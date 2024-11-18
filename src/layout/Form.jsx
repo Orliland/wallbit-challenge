@@ -38,7 +38,7 @@ const Form = () => {
           <button
             type="button"
             onClick={() => handleQuantity("remove")}
-            className="w-6 h-6 grid place-items-center bg-neutral-800/80  rounded-full hover:bg-neutral-400/40"
+            className="w-6 h-6 grid place-items-center bg-neutral-800/80 dark:bg-neutral-500 rounded-full hover:bg-neutral-400/40  dark:hover:bg-neutral-700"
           >
             <img className="w-3 h-3" src={MinusIcon} alt="Minus a product" />
           </button>
@@ -46,7 +46,7 @@ const Form = () => {
           <button
             type="button"
             onClick={() => handleQuantity("add")}
-            className="w-6 h-6 grid place-items-center bg-neutral-800/80  rounded-full hover:bg-neutral-400/40"
+            className="w-6 h-6 grid place-items-center bg-neutral-800/80 dark:bg-neutral-500 rounded-full hover:bg-neutral-400/40 dark:hover:bg-neutral-700"
           >
             <img className="w-3 h-3" src={PlusIcon} alt="Add a product" />
           </button>
@@ -63,7 +63,7 @@ const Form = () => {
         />
         <button
           type="submit"
-          className="bg-neutral-800/80 px-5 rounded-full hover:bg-neutral-400/40"
+          className="bg-neutral-800/80 px-5 rounded-full bg-neutral-800/80 dark:bg-neutral-500 rounded-full hover:bg-neutral-400/40  dark:hover:bg-neutral-700"
         >
           Agregar
         </button>
