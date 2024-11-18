@@ -6,17 +6,39 @@ import MinusIcon from "../assets/minus-solid.svg";
 const Form = () => {
   const [search, setSearch] = useState("");
   const [quantity, setQuantity] = useState(0);
+  const [zero, setZero] = useState(false);
+  const [validate, setValidate] = useState(true);
 
   const handleQuantity = (action) => {
     switch (action) {
       case "add":
         setQuantity(quantity + 1);
+        setZero(false);
         break;
       case "remove":
         if (quantity > 0) {
           setQuantity(quantity - 1);
+          setZero(false);
         }
         break;
+    }
+  };
+
+  const handleAddProduct = () => {
+    if (quantity == 0) {
+      setZero(true);
+    }
+
+    if (search.length == 0) {
+      setValidate(false);
+    } else {
+      const idProduct = Number(search);
+      if (idProduct > 0 && idProduct < 21) {
+        console.log("id existente");
+      } else {
+        // TODO: mostrar modal con mensaje de fallo la conexión astral para obtener el id
+        setValidate(false);
+      }
     }
   };
 
@@ -32,7 +54,7 @@ const Form = () => {
         Agrega productos a tu carrito
       </label>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <span className="font-bold">Cantidad:</span>
         <div className="flex gap-3">
           <button
@@ -51,15 +73,25 @@ const Form = () => {
             <img className="w-3 h-3" src={PlusIcon} alt="Add a product" />
           </button>
         </div>
+        {zero && (
+          <span className="text-red-400 ">
+            Elija una cantidad para continuar
+          </span>
+        )}
       </div>
 
       <div className=" flex gap-3">
         <input
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            if (e.target.value.length > 0) {
+              setValidate(true);
+            }
+          }}
           id="addProduct"
-          className="w-full rounded-full py-2 px-4 text-neutral-900 bg-white/90"
+          className={`w-full rounded-full py-2 px-4 text-neutral-900   ${validate ? "bg-white/90" : "bg-red-400/60"}`}
         />
         <button
           type="submit"
