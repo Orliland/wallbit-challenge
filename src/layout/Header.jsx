@@ -1,16 +1,18 @@
+import NavLink from "../components/NavLink";
+
 import GithubIcon from "../assets/github-mark-white.svg";
 import LinkedinIcon from "../assets/linkedin.svg";
 import ThreadsIcon from "../assets/threads.svg";
-import NavLink from "../components/NavLink";
+import Dark from "../components/Dark";
 
-const Header = () => {
+const Header = ({ dark, setDark }) => {
   return (
     <header className="lg:col-span-full lg:row-span-1 py-2 flex justify-between items-center">
-      <span className="text-neutral-300 font-bold text-xl py-3 px-6 rounded-full bg-black/20">
+      <span className="text-neutral-200 font-bold text-xl py-3 px-6 rounded-full bg-black/20">
         Tienda Topo
       </span>
-      <nav className="bg-black/20 rounded-full ">
-        <ul className="flex">
+      <nav className="flex gap-4">
+        <ul className="flex bg-black/20 rounded-full">
           <NavLink
             link="https://www.threads.net/orliland/"
             icon={ThreadsIcon}
@@ -29,6 +31,8 @@ const Header = () => {
             alt="Visita el repositorio de este proyecto en GitHub"
           />
         </ul>
+
+        <Dark dark={dark} setDark={setDark} />
       </nav>
     </header>
   );
