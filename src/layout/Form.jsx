@@ -24,19 +24,46 @@ const Form = () => {
     }
   };
 
-  const handleAddProduct = () => {
-    if (quantity == 0) {
-      setZero(true);
-    }
+  const [loading, setLoading] = useState(false);
 
-    if (search.length == 0) {
+  const fetchData = (idProduct) => {
+    setLoading(true);
+    setValidate(true);
+    fetch(`https://fakestoreapi.com/products/${idProduct}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response;
+      })
+      .then((response) => response.json())
+      .then((response) => {
+        const data = { ...response, quantity: quantity };
+        console.log(data);
+      })
+      .catch(() => {
+        setValidate(false);
+      })
+      .finally(() => {
+        setSearch("");
+        setQuantity(0);
+        setLoading(false);
+      });
+  };
+
+  const validateIdProduct = () => {
+    if (search == "") {
       setValidate(false);
     } else {
+      if (quantity == 0) {
+        setZero(true);
+        return;
+      }
       const idProduct = Number(search);
       if (idProduct > 0 && idProduct < 21) {
-        console.log("id existente");
+        fetchData(idProduct);
+        setValidate(true);
       } else {
-        // TODO: mostrar modal con mensaje de fallo la conexión astral para obtener el id
         setValidate(false);
       }
     }
@@ -46,7 +73,7 @@ const Form = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleAddProduct();
+        validateIdProduct();
       }}
       className="bg-black/20 p-5 rounded-2xl lg:col-span-2 lg:row-span-1 flex flex-col gap-4"
     >
@@ -81,6 +108,7 @@ const Form = () => {
       </div>
 
       <div className=" flex gap-3">
+        {/* TODO: add message of error on input */}
         <input
           type="text"
           value={search}
@@ -91,11 +119,13 @@ const Form = () => {
             }
           }}
           id="addProduct"
+          autoComplete="off"
+          placeholder="Ingrese el ID del producto (1-20)"
           className={`w-full rounded-full py-2 px-4 text-neutral-900   ${validate ? "bg-white/90" : "bg-red-400/60"}`}
         />
         <button
           type="submit"
-          className="bg-neutral-800/80 px-5 rounded-full bg-neutral-800/80 dark:bg-neutral-500 rounded-full hover:bg-neutral-400/40  dark:hover:bg-neutral-700"
+          className={`bg-neutral-800/80 px-5 rounded-full bg-neutral-800/80 dark:bg-neutral-500 rounded-full hover:bg-neutral-400/40  dark:hover:bg-neutral-700 ${loading && "animate-pulse"}`}
         >
           Agregar
         </button>
